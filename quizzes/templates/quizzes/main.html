@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{% endblock title %}
+
+{% block content %}
+
+
+<!-- Модальное окно -->
+<div class="modal fade" id="quickStartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="quickStartModalLabel">Вы хотите начать тест?</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+      </div>
+      <div class="modal-body" id="modal-body-confirm">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="button" class="btn btn-primary" id="start-button">Начать</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="h1">Тесты:</div>
+<hr>
+{% for obj in object_list %}
+<button class="btn btn-link modal-button"
+        data-pk="{{ obj.pk }}"
+        data-quiz="{{ obj.name }}"
+        data-questions="{{ obj.number_of_questions }}"
+        data-difficulty="{{ obj.difficulty }}"
+        data-time="{{ obj.time }}"
+        data-pass="{{ obj.required_score_to_pass }}"
+
+        data-bs-toggle="modal"
+        data-bs-target="#quickStartModal"
+>{{ obj.name }}</button><br>
+{% endfor %}
+
+{% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'quizzes/main.js' %}"></script>
+{% endblock scripts %}

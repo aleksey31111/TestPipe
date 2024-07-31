@@ -1,0 +1,10 @@
+# from django.contrib import admin
+# from .models import Quiz
+#
+# admin.site.register(Quiz)
+
+from django.contrib import admin
+from .models import Quiz
+
+
+admin.site.register(Quiz)
